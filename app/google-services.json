@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "151733320711",
+    "firebase_url": "https://budchat-e7d1e.firebaseio.com",
+    "project_id": "budchat-e7d1e",
+    "storage_bucket": "budchat-e7d1e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:151733320711:android:59a596e0b1c34df919bea2",
+        "android_client_info": {
+          "package_name": "com.example.budgram"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "151733320711-qp895f5lmhd9q9lee4ifo2a4fqt0319e.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.budgram",
+            "certificate_hash": "4eba4843ae5dfdf50b669feb4d9f94eaecb87081"
+          }
+        },
+        {
+          "client_id": "151733320711-f3jup6aa3b5d273nqvbn36p92k0tc7vp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDopceD6G0TmW_x44e9yt5W6GE4Ut8at2Q"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "151733320711-f3jup6aa3b5d273nqvbn36p92k0tc7vp.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

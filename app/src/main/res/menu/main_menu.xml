@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/sing_out"
+        android:title="Sing Out"
+        app:showAsAction="never"/>
+    <item
+        android:id="@+id/add_avatar"
+        android:title="Add avatart"
+        app:showAsAction="never"/>
+</menu>
