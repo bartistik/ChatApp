@@ -1,17 +1,14 @@
 package com.example.budgram;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -22,21 +19,15 @@ import com.google.firebase.database.FirebaseDatabase;
 
 public class LogInActivity extends AppCompatActivity {
     private static final String TAG = "LogInActivity";
-//cd /D d:/Program Files\Nox\bin
-// nox_adb.exe connect 127.0.0.1:62001
-    private FirebaseAuth auth;
 
+    private FirebaseAuth auth;
     private EditText nameEditText;
     private EditText emailEditText;
     private EditText passwordEditText;
     private EditText repeatPasswordEditText;
     private TextView toogleSingUpTextView;
     private Button loginSingUpButton;
-
-    private String pathIdUser;
-
     private boolean loginModeActive;
-
     private FirebaseDatabase database;
     private DatabaseReference usersDatabaseReference;
 
@@ -62,20 +53,19 @@ public class LogInActivity extends AppCompatActivity {
                 loginSingUpUser(emailEditText.getText().toString().trim(), passwordEditText.getText().toString().trim());
             }
         });
-        //проверяем авторихован ли юзер, чтобы не запускать каждый раз активити с авторизацией/регистрацией
+        //проверяем авторизован ли юзер
         if (auth.getCurrentUser() != null) {
             startActivity(new Intent(LogInActivity.this, UserListActivity.class));
         }
     }
 
     private void loginSingUpUser(String email, String password) {
-
-        if (loginModeActive){
+        if (loginModeActive) {
             //режим авторизации юзера
             //проверки введенных данных
-            if (passwordEditText.getText().toString().trim().length() < 7){
+            if (passwordEditText.getText().toString().trim().length() < 7) {
                 Toast.makeText(this, "Password must be at least 7 characters", Toast.LENGTH_SHORT).show();
-            } else if (emailEditText.getText().toString().trim().equals("")){
+            } else if (emailEditText.getText().toString().trim().equals("")) {
                 Toast.makeText(this, "Please input your email", Toast.LENGTH_SHORT).show();
             } else {
                 //начало авторизации
@@ -85,36 +75,28 @@ public class LogInActivity extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
                                     // Sign in success, update UI with the signed-in user's information
-                                    Log.d(TAG, "signInWithEmail:success");
                                     FirebaseUser user = auth.getCurrentUser();
-                                    //updateUI(user);
                                     Intent intent = new Intent(LogInActivity.this, UserListActivity.class);
                                     intent.putExtra("userName", nameEditText.getText().toString().trim());
                                     startActivity(intent);
                                 } else {
                                     // If sign in fails, display a message to the user.
-                                    Log.w(TAG, "signInWithEmail:failure", task.getException());
                                     Toast.makeText(LogInActivity.this, "Authentication failed.",
                                             Toast.LENGTH_SHORT).show();
-                                    //updateUI(null);
-                                    // ...
                                 }
-
-                                // ...
                             }
                         });
             }
             //режим регистрации юзера
         } else {
             //проверки введенных данных
-            if (!passwordEditText.getText().toString().trim().equals(repeatPasswordEditText.getText().toString().trim())){
+            if (!passwordEditText.getText().toString().trim().equals(repeatPasswordEditText.getText().toString().trim())) {
                 Toast.makeText(this, "Passwords don`t match", Toast.LENGTH_SHORT).show();
-            } else if (passwordEditText.getText().toString().trim().length() < 7){
+            } else if (passwordEditText.getText().toString().trim().length() < 7) {
                 Toast.makeText(this, "Password must be at least 7 characters", Toast.LENGTH_SHORT).show();
-            } else if (emailEditText.getText().toString().trim().equals("")){
+            } else if (emailEditText.getText().toString().trim().equals("")) {
                 Toast.makeText(this, "Please input your email", Toast.LENGTH_SHORT).show();
-            }
-            else {
+            } else {
                 //начало регистрации юзера
                 auth.createUserWithEmailAndPassword(email, password)
                         .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -122,47 +104,34 @@ public class LogInActivity extends AppCompatActivity {
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
                                     // Sign in success, update UI with the signed-in user's information
-                                    Log.d(TAG, "createUserWithEmail:success");
                                     FirebaseUser user = auth.getCurrentUser();
                                     createUser(user);
                                     Intent intent = new Intent(LogInActivity.this, UserListActivity.class);
                                     intent.putExtra("userName", nameEditText.getText().toString().trim());
-                                    Log.i("userName", " " + nameEditText.getText().toString().trim());
                                     startActivity(intent);
-                                    //updateUI(user);
                                 } else {
                                     // If sign in fails, display a message to the user.
-                                    Log.w(TAG, "createUserWithEmail:failure", task.getException());
                                     Toast.makeText(LogInActivity.this, "Authentication failed.",
                                             Toast.LENGTH_SHORT).show();
-                                    //updateUI(null);
                                 }
-
-                                // ...
                             }
                         });
             }
-
         }
-
     }
 
     private void createUser(FirebaseUser firebaseUser) {
-
         User user = new User();
         user.setPathIdUser(usersDatabaseReference.push().getKey());
         user.setId(firebaseUser.getUid());
         user.setEmail(firebaseUser.getEmail());
         user.setName(nameEditText.getText().toString().trim());
         user.setMyAvatarImageResource("Noavatar");
-        //my code
         usersDatabaseReference.child(user.getPathIdUser()).setValue(user);
-        // allah usersDatabaseReference.push().setValue(user);
     }
 
     public void toogleLoginMode(View view) {
-
-        if (loginModeActive){
+        if (loginModeActive) {
             loginModeActive = false;
             loginSingUpButton.setText("Sing Up");
             toogleSingUpTextView.setText("Or, log in");

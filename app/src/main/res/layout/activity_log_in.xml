@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -8,11 +7,11 @@
     tools:context=".LogInActivity">
 
     <ImageView
-        android:src="@drawable/ic_chat_black_24dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="8dp"
-        android:layout_width="150dp"
-        android:layout_height="150dp"/>
+        android:src="@drawable/ic_chat_black_24dp" />
 
     <EditText
         android:id="@+id/emailEditText"
@@ -20,7 +19,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:hint="Your Email"
-        android:inputType="textEmailAddress"/>
+        android:inputType="textEmailAddress" />
 
     <EditText
         android:id="@+id/passwordEditText"
@@ -28,7 +27,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:hint="Your Password"
-        android:inputType="textPassword"/>
+        android:inputType="textPassword" />
 
     <EditText
         android:id="@+id/repeatPasswordEditText"
@@ -36,7 +35,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:hint="Confirm Password"
-        android:inputType="textPassword"/>
+        android:inputType="textPassword" />
 
     <EditText
         android:id="@+id/nameEditText"
@@ -44,21 +43,24 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:hint="Your Name"
-        android:inputType="textPersonName"/>
+        android:inputType="textPersonName" />
+
     <Button
         android:id="@+id/loginSingUpButton"
-        android:layout_gravity="center_horizontal"
-        android:text="Sing up"
         android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_gravity="center_horizontal"
         android:layout_marginTop="8dp"
-        android:layout_height="50dp"/>
+        android:text="Sing up" />
+
     <TextView
         android:id="@+id/toogleToSingUpTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tap To Log In"
-        android:onClick="toogleLoginMode"
         android:layout_gravity="center_horizontal"
+        android:layout_marginTop="8dp"
         android:clickable="true"
-        android:layout_marginTop="8dp"/>
+        android:onClick="toogleLoginMode"
+        android:text="Tap To Log In" />
+
 </LinearLayout>

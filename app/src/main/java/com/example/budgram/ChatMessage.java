@@ -9,11 +9,17 @@ public class ChatMessage {
     private String imageUrl;
     private boolean isMine;
 
-    public ChatMessage(){
-
+    public ChatMessage() {
     }
 
-    public ChatMessage(String text, String name, String sender, String recipient, String imageUrl, boolean isMine) {
+    public ChatMessage(
+            String text,
+            String name,
+            String sender,
+            String recipient,
+            String imageUrl,
+            boolean isMine
+    ) {
         this.text = text;
         this.name = name;
         this.sender = sender;
@@ -22,7 +28,9 @@ public class ChatMessage {
         this.isMine = isMine;
     }
 
-    public String getText() { return text; }
+    public String getText() {
+        return text;
+    }
 
     public void setText(String text) {
         this.text = text;
@@ -56,9 +64,15 @@ public class ChatMessage {
         return recipient;
     }
 
-    public void setRecipient(String recipient) { this.recipient = recipient; }
+    public void setRecipient(String recipient) {
+        this.recipient = recipient;
+    }
 
-    public boolean isMine() { return isMine; }
+    public boolean isMine() {
+        return isMine;
+    }
 
-    public void setMine(boolean mine) { isMine = mine; }
+    public void setMine(boolean mine) {
+        isMine = mine;
+    }
 }

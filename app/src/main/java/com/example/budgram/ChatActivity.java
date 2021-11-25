@@ -1,20 +1,11 @@
 package com.example.budgram;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.app.NotificationCompat;
-import androidx.core.app.NotificationManagerCompat;
-
-import android.app.Notification;
-import android.app.NotificationManager;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.InputFilter;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -24,7 +15,11 @@ import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.ProgressBar;
-
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 import com.google.android.gms.tasks.Continuation;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -37,39 +32,28 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
-
 import java.util.ArrayList;
 import java.util.List;
 
 public class ChatActivity extends AppCompatActivity {
+
     private static final String CHANNEL_ID = "New message";
-
-
-    //      cd /D d:/Program Files\Nox\bin
-    //      nox_adb.exe connect 127.0.0.1:62001
-
-
+    private static final int RC_IMAGE_PICKER = 123;
     private ListView messageListView;
     private ChatMessageAdapter adapter;
     private ProgressBar progressBar;
     private ImageButton sendImageButton;
     private Button sendMessageButton;
     private EditText messageEditText;
-
     private String userName;
     private String recipientUserId;
     private String recipientUserName;
-
-    private static final int RC_IMAGE_PICKER = 123;
-
-
     private FirebaseAuth auth;
     private FirebaseDatabase database;
     private DatabaseReference messagesDatabaseReference;
     private ChildEventListener messagesChildEventListener;
     private DatabaseReference usersDatabaseReference;
     private ChildEventListener usersChildEventListener;
-
     private FirebaseStorage storage;
     private StorageReference chatImagesStorageReference;
 
@@ -86,10 +70,8 @@ public class ChatActivity extends AppCompatActivity {
             recipientUserId = intent.getStringExtra("recipientUserId");
             recipientUserName = intent.getStringExtra("recipientUserName");
         }
-        Log.i("userName", " " + userName);
 
         setTitle("Chat with " + recipientUserName);
-
         database = FirebaseDatabase.getInstance();
         storage = FirebaseStorage.getInstance();
 
@@ -101,32 +83,27 @@ public class ChatActivity extends AppCompatActivity {
         sendImageButton = findViewById(R.id.sendPhotoButton);
         sendMessageButton = findViewById(R.id.sendMessageButton);
         messageEditText = findViewById(R.id.messageEditText);
-
         messageListView = findViewById(R.id.messageListView);
+
         List<ChatMessage> awesomeMessages = new ArrayList<>();
         adapter = new ChatMessageAdapter(this, R.layout.message_item,
                 awesomeMessages);
         messageListView.setAdapter(adapter);
-
         progressBar.setVisibility(ProgressBar.INVISIBLE);
 
         messageEditText.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start,
-                                          int count, int after) {
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
 
             }
 
             @Override
-            public void onTextChanged(CharSequence s, int start,
-                                      int before, int count) {
-
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
                 if (s.toString().trim().length() > 0) {
                     sendMessageButton.setEnabled(true);
                 } else {
                     sendMessageButton.setEnabled(false);
                 }
-
             }
 
             @Override
@@ -148,7 +125,6 @@ public class ChatActivity extends AppCompatActivity {
                 message.setSender(auth.getCurrentUser().getUid());
                 message.setRecipient(recipientUserId);
                 message.setImageUrl(null);
-
                 messagesDatabaseReference.push().setValue(message);
                 createNotification(message, userName);
                 messageEditText.setText("");
@@ -197,7 +173,6 @@ public class ChatActivity extends AppCompatActivity {
         };
 
         usersDatabaseReference.addChildEventListener(usersChildEventListener);
-
         messagesChildEventListener = new ChildEventListener() {
             @Override
             public void onChildAdded(@NonNull DataSnapshot dataSnapshot, @Nullable String s) {
@@ -279,7 +254,6 @@ public class ChatActivity extends AppCompatActivity {
                     .child(selectedImageUri.getLastPathSegment());
 
             UploadTask uploadTask = imageReference.putFile(selectedImageUri);
-
             uploadTask = imageReference.putFile(selectedImageUri);
 
             Task<Uri> urlTask = uploadTask.continueWithTask(new Continuation<UploadTask.TaskSnapshot, Task<Uri>>() {
@@ -288,8 +262,6 @@ public class ChatActivity extends AppCompatActivity {
                     if (!task.isSuccessful()) {
                         throw task.getException();
                     }
-
-                    // Continue with the task to get the download URL
                     return imageReference.getDownloadUrl();
                 }
             }).addOnCompleteListener(new OnCompleteListener<Uri>() {
@@ -305,7 +277,6 @@ public class ChatActivity extends AppCompatActivity {
                         messagesDatabaseReference.push().setValue(message);
                     } else {
                         // Handle failures
-                        // ...
                     }
                 }
             });

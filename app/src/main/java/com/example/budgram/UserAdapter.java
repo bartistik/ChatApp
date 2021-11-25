@@ -1,18 +1,13 @@
 package com.example.budgram;
 
-import android.content.Intent;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
-
 import com.bumptech.glide.Glide;
-
 import java.util.ArrayList;
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder> {
@@ -20,17 +15,14 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
     private ArrayList<User> users;
     private OnUserClickListener listener;
 
-    public interface OnUserClickListener {
-        void onUserClick(int position);
-    }
-
     public void setOnUserClickListener(OnUserClickListener listener) {
         this.listener = listener;
     }
 
-    public UserAdapter(ArrayList<User> users){
+    public UserAdapter(ArrayList<User> users) {
         this.users = users;
     }
+
     @NonNull
     @Override
     public UserViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -42,14 +34,12 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
     @Override
     public void onBindViewHolder(@NonNull UserViewHolder holder, int position) {
         User currentUser = users.get(position);
-        Log.i("avatar", currentUser.getMyAvatarImageResource() );
-        if(currentUser.getMyAvatarImageResource().equals("Noavatar")) {
-            //holder.avatarImageView.setImageResource(currentUser.getAvatarImageResource());
+        if (currentUser.getMyAvatarImageResource().equals("Noavatar")) {
             holder.avatarImageView.setImageResource(R.drawable.user_image);
         } else {
             Glide.with(holder.avatarImageView.getContext())
-                .load(currentUser.getMyAvatarImageResource())
-                .into(holder.avatarImageView);
+                    .load(currentUser.getMyAvatarImageResource())
+                    .into(holder.avatarImageView);
         }
         holder.userNameTextView.setText(currentUser.getName());
     }
@@ -82,4 +72,9 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
             });
         }
     }
+
+    public interface OnUserClickListener {
+        void onUserClick(int position);
+    }
+
 }

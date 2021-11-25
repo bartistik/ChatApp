@@ -10,4 +10,5 @@
         android:id="@+id/add_avatar"
         android:title="Add avatart"
         app:showAsAction="never"/>
+
 </menu>

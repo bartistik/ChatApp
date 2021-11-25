@@ -1,41 +1,31 @@
 package com.example.budgram;
 
 import android.app.Activity;
-import android.content.Context;
-import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
 import android.widget.TextView;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-
 import com.bumptech.glide.Glide;
-
-import org.w3c.dom.Text;
-
 import java.util.List;
 
 public class ChatMessageAdapter extends ArrayAdapter<ChatMessage> {
 
     private List<ChatMessage> messages;
     private Activity activity;
+
     public ChatMessageAdapter(Activity context, int resource, List<ChatMessage> messages) {
         super(context, resource, messages);
-
         this.messages = messages;
         this.activity = context;
     }
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
 
         ViewHolder viewHolder;
-        LayoutInflater layoutInflater = (LayoutInflater)activity.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
-
+        LayoutInflater layoutInflater = (LayoutInflater) activity.getSystemService(Activity.LAYOUT_INFLATER_SERVICE);
         ChatMessage chatMessage = getItem(position);
         int layoutResource = 0;
         int viewType = getItemViewType(position);
@@ -68,7 +58,6 @@ public class ChatMessageAdapter extends ArrayAdapter<ChatMessage> {
                     .into(viewHolder.photoImageView);
         }
         viewHolder.nameTextView.setText(chatMessage.getName());
-
         return convertView;
     }
 
@@ -76,9 +65,9 @@ public class ChatMessageAdapter extends ArrayAdapter<ChatMessage> {
     public int getItemViewType(int position) {
         int flag;
         ChatMessage chatMessage = messages.get(position);
-        if (chatMessage.isMine()){
+        if (chatMessage.isMine()) {
             flag = 0;
-        }else {
+        } else {
             flag = 1;
         }
         return flag;
@@ -89,12 +78,12 @@ public class ChatMessageAdapter extends ArrayAdapter<ChatMessage> {
         return 2;
     }
 
-    private class ViewHolder {
+    private static class ViewHolder {
         private TextView messageTextView;
         private ImageView photoImageView;
         private TextView nameTextView;
 
-        public ViewHolder(View view){
+        public ViewHolder(View view) {
             photoImageView = view.findViewById(R.id.photoImageView);
             messageTextView = view.findViewById(R.id.messageTextView);
             nameTextView = view.findViewById(R.id.nameTextView);

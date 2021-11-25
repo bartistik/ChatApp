@@ -1,6 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="ProjectRootManager" version="2" languageLevel="JDK_1_7" project-jdk-name="1.8" project-jdk-type="JavaSDK">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/Android/Projects/Studies projects/BudGram/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.14635416666666667" />
+        <entry key="..\:/Android/Projects/Studies projects/BudGram/app/src/main/res/drawable/circle_background.xml" value="0.14635416666666667" />
+        <entry key="..\:/Android/Projects/Studies projects/BudGram/app/src/main/res/drawable/ic_add_a_photo_black_24dp.xml" value="0.14635416666666667" />
+        <entry key="..\:/Android/Projects/Studies projects/BudGram/app/src/main/res/drawable/ic_chat_black_24dp.xml" value="0.14635416666666667" />
+        <entry key="..\:/Android/Projects/Studies projects/BudGram/app/src/main/res/drawable/ic_launcher_background.xml" value="0.14635416666666667" />
+        <entry key="..\:/Android/Projects/Studies projects/BudGram/app/src/main/res/drawable/ic_person_outline_grey_50dp.xml" value="0.14635416666666667" />
+        <entry key="..\:/Android/Projects/Studies projects/BudGram/app/src/main/res/drawable/user_image.xml" value="0.14635416666666667" />
+        <entry key="..\:/Android/Projects/Studies projects/BudGram/app/src/main/res/layout/activity_chat.xml" value="0.13020833333333334" />
+        <entry key="..\:/Android/Projects/Studies projects/BudGram/app/src/main/res/layout/activity_log_in.xml" value="0.17980072463768115" />
+        <entry key="..\:/Android/Projects/Studies projects/BudGram/app/src/main/res/layout/activity_user_list.xml" value="0.13020833333333334" />
+        <entry key="..\:/Android/Projects/Studies projects/BudGram/app/src/main/res/layout/message_item.xml" value="0.13020833333333334" />
+        <entry key="..\:/Android/Projects/Studies projects/BudGram/app/src/main/res/layout/my_message_item.xml" value="0.13020833333333334" />
+        <entry key="..\:/Android/Projects/Studies projects/BudGram/app/src/main/res/layout/user_item.xml" value="0.13020833333333334" />
+        <entry key="..\:/Android/Projects/Studies projects/BudGram/app/src/main/res/layout/your_messge_item.xml" value="0.13020833333333334" />
+        <entry key="..\:/Android/Projects/Studies projects/BudGram/app/src/main/res/menu/main_menu.xml" value="0.13020833333333334" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="1.8" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
   <component name="ProjectType">

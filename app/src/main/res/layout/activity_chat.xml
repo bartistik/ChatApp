@@ -3,46 +3,51 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ChatActivity"
+    android:orientation="vertical"
     android:padding="4dp"
-    android:orientation="vertical">
+    tools:context=".ChatActivity">
 
     <ListView
         android:id="@+id/messageListView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_above="@id/sendMessageLayout"
-        tools:listitem="@layout/message_item"
         android:divider="@android:color/black"
-        android:transcriptMode="alwaysScroll"/>
+        android:transcriptMode="alwaysScroll"
+        tools:listitem="@layout/message_item" />
+
     <LinearLayout
         android:id="@+id/sendMessageLayout"
-        android:layout_alignParentBottom="true"
-        android:orientation="horizontal"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:orientation="horizontal">
+
         <ImageButton
             android:id="@+id/sendPhotoButton"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@drawable/ic_add_a_photo_black_24dp"/>
-    <EditText
-        android:id="@+id/messageEditText"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"/>
+            android:src="@drawable/ic_add_a_photo_black_24dp" />
 
-    <Button
-        android:id="@+id/sendMessageButton"
-        android:text="Send"
-        android:enabled="false"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
-</LinearLayout>
+        <EditText
+            android:id="@+id/messageEditText"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1" />
+
+        <Button
+            android:id="@+id/sendMessageButton"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:enabled="false"
+            android:text="Send" />
+    </LinearLayout>
+
     <ProgressBar
         android:id="@+id/progressbar"
-        android:layout_centerHorizontal="true"
-        android:layout_centerVertical="true"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_centerVertical="true" />
+
 </RelativeLayout>
